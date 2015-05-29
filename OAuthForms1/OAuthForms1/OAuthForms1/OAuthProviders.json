@@ -1,0 +1,282 @@
+﻿// Obtain your own clientId and clientSecret from an OAuth providers website.
+// For OAuth2, implicit authorization (app-to-provider) only needs clientId. Explicit (server-to-provider) needs clientSecret.
+// Be careful about introducing errors (syntax, naming, typeof), they may cause mysterious exceptions to be thrown.
+// redirectUrl must be an explicit html page, not a default or domain name. redirectUrl may or may not have to be entered in your OAuth provider's registration info.
+// redirectUrl may or may not need to be https (vs http). http://httpbin.org/get is a handly redirectUrl, if allowed. http://localhost seems problematic.
+{
+  "AuthProviders": [
+    {
+      "name": "Amazon",
+      "image": "http://icons.iconarchive.com/icons/bokehlicia/pacifica/128/amazon-icon.png",
+      "clientId": "amzn1.application-oa2-client.8dc1faa5eb08497194a32fdd33da2b8a",
+      "clientSecret": "",
+      "scope": "profile",
+      "authorizeUrl": "https://www.amazon.com/ap/oa",
+      "accessTokenUrl": "https://api.amazon.com/auth/O2/token",
+      "redirectUrl": "https://httpbin.org/get", // redirectUrl can be any whitelisted https. To whitelist, enter url into provider's redirect list in their App's API console.
+      "apiRequests": [ "https://api.amazon.com/auth/O2/tokeninfo", "https://api.amazon.com/user/profile" ], // example of multiple api calls
+      "developerWebsite": "",
+      "developerApiDocs": "https://images-na.ssl-images-amazon.com/images/G/01/lwa/dev/docs/website-developer-guide._TTH_.pdf",
+      "developerAppConsole": "https://sellercentral.amazon.com/gp/homepage.html",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": ""
+    },
+    {
+      "name": "Dropbox",
+      "image": "http://icons.iconarchive.com/icons/danleech/simple/128/dropbox-icon.png",
+      "clientId": "36gw9662l7kajue",
+      "clientSecret": "",
+      "scope": "",
+      "authorizeUrl": "https://www.dropbox.com/1/oauth2/authorize",
+      "accessTokenUrl": "https://www.dropbox.com/1/oauth2/access_token",
+      "redirectUrl": "https://httpbin.org/get",
+      "apiRequests": [ "https://api.dropbox.com/1/account/info" ],
+      "developerWebsite": "https://www.dropbox.com/developers",
+      "developerApiDocs": "https://www.dropbox.com/developers/core/docs",
+      "developerAppConsole": "https://www.dropbox.com/developers/apps",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": ""
+    },
+    {
+      "name": "Facebook",
+      "image": "http://icons.iconarchive.com/icons/hopstarter/social-networking/128/Facebook-icon.png",
+      "clientId": "1588540051400251",
+      "clientSecret": "",
+      "scope": "",
+      "authorizeUrl": "https://m.facebook.com/dialog/oauth/",
+      "accessTokenUrl": "",
+      "redirectUrl": "http://www.facebook.com/connect/login_success.html",
+      "apiRequests": [ "https://graph.facebook.com/me" ],
+      "developerWebsite": "https://developers.facebook.com/",
+      "developerApiDocs": "",
+      "developerAppConsole": "https://developers.facebook.com/apps/",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": ""
+    },
+    {
+      "name": "GitHub (access_token error)", // redirect url returns code instead of access_token
+      "image": "http://icons.iconarchive.com/icons/artcore-illustrations/artcore-4/128/github-icon.png",
+      "clientId": "d449719ebac8374c3b19",
+      "clientSecret": "",
+      "scope": "user",
+      "authorizeUrl": "https://github.com/login/oauth/authorize",
+      "accessTokenUrl": "https://github.com/login/oauth/access_token",
+      "redirectUrl": "https://www.facebook.com/connect/login_success.html",
+      "apiRequests": [ "https://api.github.com/user" ],
+      "developerWebsite": "https://developer.github.com/",
+      "developerApiDocs": "https://developer.github.com/v3/",
+      "developerAppConsole": "https://github.com/settings/developers",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "SubstituteRedirectUrlAccessToken": "code", // fix non-standard issue
+      "comment": ""
+    },
+    {
+      "name": "Google",
+      "image": "http://icons.iconarchive.com/icons/graphics-vibe/simple-rounded-social/128/google-icon.png",
+      "clientId": "232694463747-kvgavlaaekt3jj6vb934koptl6rsv1q2.apps.googleusercontent.com",
+      "clientSecret": "",
+      "scope": "profile",
+      "authorizeUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://accounts.google.com/o/oauth2/token",
+      "redirectUrl": "http://httpbin.org/get", // some URLs that should work are not. See comments. or urn:ietf:wg:oauth:2.0:oob
+      "apiRequests": [ "https://maps.googleapis.com/maps/api/geocode/json?address=122+Flinders+St,+Darlinghurst,+NSW,+Australia&sensor=false" ],
+      "developerWebsite": "",
+      "developerApiDocs": "",
+      "developerAppConsole": "",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": "redirect can be any URI specified in (API & auth->credentials) menu including http://localhost or urn:ietf:wg:oauth:2.0:oob. However never could get my https URL or http://localhost to work."
+    },
+    {
+      "name": "Instagram",
+      "image": "http://icons.iconarchive.com/icons/designbolts/free-instagram/128/Active-Instagram-3-icon.png",
+      "clientId": "75135792f5f941d6a378739eded4be4b",
+      "clientSecret": "",
+      "scope": "basic",
+      "authorizeUrl": "https://api.instagram.com/oauth/authorize",
+      "accessTokenUrl": "https://api.instagram.com/oauth/access_token",
+      "redirectUrl": "https://www.facebook.com/connect/login_success.html", // not working: https://httpbin.org/get, https://httpbin.org/get, http://www.softworksltd.com
+      "apiRequests": [ "https://api.instagram.com/v1/locations/search?lat=48.858844&lng=2.294351" ],
+      "developerWebsite": "https://instagram.com/developer/",
+      "developerApiDocs": "",
+      "developerAppConsole": "https://instagram.com/developer/clients/manage/",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": ""
+    },
+    {
+      "name": "LinkedIn (more than one error)",
+      "image": "http://icons.iconarchive.com/icons/graphics-vibe/simple-rounded-social/128/linkedin-icon.png",
+      "clientId": "77grq91zb2yncm",
+      "clientSecret": "",
+      "scope": "r_basicprofile", // emply defaults to all
+      "authorizeUrl": "https://www.linkedin.com/uas/oauth2/authorization",
+      "accessTokenUrl": "https://www.linkedin.com/uas/oauth2/accessToken",
+      "redirectUrl": "https://httpbin.org/get", // not working: www.facebook.com/connect/login_success.html (hang), https://just27.justhost.com/~softwork/index.html (404)
+      "apiRequests": [ "https://api.linkedin.com/v1/people/~?format=json" ],
+      "developerWebsite": "https://developer.linkedin.com/",
+      "developerApiDocs": "https://apigee.com/resources/linkedin",
+      "developerAppConsole": "https://www.linkedin.com/developer/apps",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "ForceRequestTypeOfCode": true, // fix non-standard issue
+      "SubstituteRedirectUrlAccessToken": "code", // fix non-standard issue
+      "SubstituteRequestAccessToken": "oauth2_access_token", // fix non-standard issue
+      "comment": "LinkedIn OAuth2 requires implicit response: response_type=code&state={random number}. Note oauth2_access_token instead of access_token"
+    },
+    {
+      "name": "Meetup (OAuth1)",
+      "image": "http://icons.iconarchive.com/icons/position-relative/social-2/128/meetup-icon.png",
+      "consumerKey": "82lqehr896pdovjhij4akthg7n",
+      "consumerSecret": "rqgqtu66hvct9hf9av0bel6np9",
+      "requestTokenUrl": "https://api.meetup.com/oauth/request",
+      "authorizeUrl": "https://secure.meetup.com/authorize",
+      "accessTokenUrl": "https://api.meetup.com/oauth/access",
+      "callbackUrl": "http://www.softworksltd.com/index.html", // redirectUrl must be within registered website
+      "apiRequests": [ "https://api.meetup.com/cities" ],
+      "developerWebsite": "http://www.meetup.com/meetup_api",
+      "developerApiDocs": "http://www.meetup.com/meetup_api",
+      "developerAppConsole": "https://secure.meetup.com/meetup_api",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": "Uses OAuth1"
+    },
+    {
+      "name": "Meetup (OAuth2)",
+      "image": "http://icons.iconarchive.com/icons/position-relative/social-2/128/meetup-icon.png",
+      "clientId": "82lqehr896pdovjhij4akthg7n",
+      "clientSecret": "",
+      "scope": "basic",
+      "authorizeUrl": "https://secure.meetup.com/oauth2/authorize",
+      "accessTokenUrl": "https://secure.meetup.com/oauth2/access",
+      "redirectUrl": "http://www.softworksltd.com/index.html", // must explicitly specify an html page. redirectUrl must be within the developer's domain as registered with the provider.
+      "apiRequests": [ "https://api.meetup.com/cities" ],
+      "developerWebsite": "http://www.meetup.com/meetup_api",
+      "developerApiDocs": "http://www.meetup.com/meetup_api",
+      "developerAppConsole": "https://secure.meetup.com/meetup_api",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": ""
+    },
+    {
+      "name": "Microsoft",
+      "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTXGtu_amk0MXq9hZ1LsDKyogbpJXWdw6jBDqim59odwdoyHL6ywQ",
+      "clientId": "0000000048157786",
+      "clientSecret": "",
+      "scope": "wl.signin wl.basic wl.skydrive wl.photos",
+      "authorizeUrl": "https://login.live.com/oauth20_authorize.srf",
+      "accessTokenUrl": "https://login.live.com/oauth20_desktop.srf",
+      "redirectUrl": "http://www.softworksltd.com/index.html", // redirectUrl must be within the developer's domain as registered with the provider.
+      "apiRequests": [ "https://apis.live.net/v5.0/me", "https://apis.live.net/v5.0/me/albums" ], // example of multiple api calls
+      "developerWebsite": "",
+      "developerApiDocs": "",
+      "developerAppConsole": "https://outlook.office365.com/api/beta/me/userphoto",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": ""
+    },
+    {
+      "name": "PayPal (live) (missing clientId)", // live
+      "image": "http://icons.iconarchive.com/icons/alecive/flatwoken/128/Apps-Paypal-B-icon.png",
+      "clientId": "",
+      "clientSecret": "",
+      "scope": "openid", // profile
+      "authorizeUrl": "https://www.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize",
+      "accessTokenUrl": "https://api.paypal.com/v1/oauth2/token",
+      "redirectUrl": "http://httpbin.org/get",
+      "apiRequests": [ "https://api.paypal.com/v1/identity/openidconnect/userinfo/?schema=openid" ], // example of multiple api calls
+      "developerWebsite": "https://developer.paypal.com/",
+      "developerApiDocs": "",
+      "developerAppConsole": "https://developer.paypal.com/developer/applications",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "ForceRequestTypeOfCode": true,
+      "comment": ""
+    },
+    {
+      "name": "PayPal (sandbox) (login issue)", // can't login. Must be able to login into () first?
+      "image": "http://icons.iconarchive.com/icons/alecive/flatwoken/128/Apps-Paypal-B-icon.png",
+      "clientId": "Acsybtx0AGQqUrpqUsLMByAAbAqDjQJ7MeoY_tUUmZlEJlHyRPpwVk0plxXAurIb7eVZ0xJ8A1q7K5Mx",
+      "clientSecret": "",
+      "scope": "openid", // profile
+      "authorizeUrl": "https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize",
+      "accessTokenUrl": "https://api.sandbox.paypal.com/v1/oauth2/token",
+      "redirectUrl": "http://httpbin.org/get",
+      "apiRequests": [ "https://api.sandbox.paypal.com/v1/identity/openidconnect/userinfo/?schema=openid" ], // example of multiple api calls
+      "developerWebsite": "https://developer.paypal.com/",
+      "developerApiDocs": "",
+      "developerAppConsole": "https://developer.paypal.com/developer/applications",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "ForceRequestTypeOfCode": true,
+      "comment": ""
+    },
+    {
+      "name": "StackOverflow (more than one error)",
+      "image": "http://icons.iconarchive.com/icons/limav/flat-gradient-social/128/Stackoverflow-icon.png",
+      "clientId": "4872",
+      "clientSecret": "",
+      "scope": "",
+      "authorizeUrl": "https://stackexchange.com/oauth",
+      "accessTokenUrl": "https://stackexchange.com/oauth/access_token",
+      "redirectUrl": "http://www.softworksltd.com/index.html", // redirectUrl must be within the developer's domain as registered with the provider.
+      "apiRequests": [ "https://api.stackexchange.com/2.2/questions/me" ], // example of multiple api calls
+      "developerWebsite": "",
+      "developerApiDocs": "https://api.stackexchange.com/docs/authentication",
+      "developerAppConsole": "http://stackapps.com/apps/oauth/",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": ""
+    },
+    {
+      "name": "Twitter",
+      "image": "http://icons.iconarchive.com/icons/graphics-vibe/simple-rounded-social/128/twitter-icon.png",
+      "consumerKey": "F5tWJ6jIxNMdOZsAvTBePQ",
+      "consumerSecret": "uqwUjETSvX8li9IPFLAiuHqNQ7JvrYXBSlLR6K7DsQ",
+      "requestTokenUrl": "https://api.twitter.com/oauth/request_token",
+      "authorizeUrl": "https://api.twitter.com/oauth/authorize",
+      "accessTokenUrl": "https://api.twitter.com/oauth/access_token",
+      "callbackUrl": "http://twitter.com",
+      "apiRequests": [ "https://api.twitter.com/1.1/statuses/home_timeline.json" ],
+      "developerWebsite": "",
+      "developerApiDocs": "",
+      "developerAppConsole": "",
+      "developerOAuthDocs": "",
+      "developerAppRegistration":  "",
+      "sampleAuthorizeGet": "",
+      "sampleAccessTokenGet": "",
+      "comment": "Uses OAuth1"
+    }
+
+  ]
+}
