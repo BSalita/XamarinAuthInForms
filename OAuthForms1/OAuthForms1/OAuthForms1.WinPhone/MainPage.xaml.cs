@@ -18,13 +18,8 @@ namespace OAuthForms1.WinPhone
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
 
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new OAuthForms1.App(new Auth()));
-        }
-    }
-    public class Auth : IAuth
-    {
-        public void OAuth2Authenticator(string clientId, string scope, string authorizeUrl, string redirectUrl)
-        {
+            UAuth.Auth.auth = new UAuthImpl.Auth();
+            LoadApplication(new OAuthForms1.App());
         }
     }
 }

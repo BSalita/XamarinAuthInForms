@@ -92,6 +92,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\src\uauthimpl.cs">
+      <Link>uauthimpl.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\UAuth\UAuth.csproj">
+      <Project>{67f9d3a8-f71e-4428-913f-c37ae82cdb24}</Project>
+      <Name>UAuth</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OAuthForms1\OAuthForms1.csproj">
       <Name>OAuthForms1</Name>
     </ProjectReference>
