@@ -1,0 +1,27 @@
+﻿Document todo:
+1. Only tetsted on Android
+2. Document interesting bits: button image alternative, fix1, fix2, fix3, embedded resource
+3. broken: github, linkedin, paypal, stackoverflow
+4. curl is helpful but curl documentation is very helpful.
+
+OAuthForms1 todo:
+1. I - Implement token renewal on startup.
+2. possible to cancel authorization page?
+3. implement long press of provider button to delete Account info. Prompt will occur next time.
+4. is there an issue with restarting app and Accounts not persisting correctly?
+5. in authorization class, change page type from content page to navigation page.
+6. implement other ways to specify provider images. Allow actual icon data instead of only Urls.
+7. persist provider image icons. use minimal size and bandwith.
+
+UOauth todo:
+1. I - Implement iPhone and Windows 8.
+2. Implement basic authentication.
+
+provider todo:
+1. fix Paypal login error
+2. fix "more than one error" in github, linkedin, stackoverflow
+
+OAuthProviders: json todo:
+1. I - need to remove consumer secret?
+2. add more providers into OAuthProviders.json.
+3. fill in sample urls with curl, raw http request
