@@ -63,7 +63,7 @@
       "comment": ""
     },
     {
-      "name": "GitHub (access_token error)", // redirect url returns code instead of access_token
+      "name": "GitHub (post-auth error)",
       "image": "http://icons.iconarchive.com/icons/artcore-illustrations/artcore-4/128/github-icon.png",
       "clientId": "d449719ebac8374c3b19",
       "clientSecret": "",
@@ -121,7 +121,7 @@
       "comment": ""
     },
     {
-      "name": "LinkedIn (more than one error)",
+      "name": "LinkedIn (post-auth error)",
       "image": "http://icons.iconarchive.com/icons/graphics-vibe/simple-rounded-social/128/linkedin-icon.png",
       "clientId": "77grq91zb2yncm",
       "clientSecret": "",
@@ -240,7 +240,7 @@
       "comment": ""
     },
     {
-      "name": "StackOverflow (more than one error)",
+      "name": "StackOverflow (post-auth error)",
       "image": "http://icons.iconarchive.com/icons/limav/flat-gradient-social/128/Stackoverflow-icon.png",
       "clientId": "4872",
       "clientSecret": "",
