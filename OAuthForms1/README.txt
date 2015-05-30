@@ -1,22 +1,21 @@
 
-Synopsis: Complete C# cross-platform mobile app. Demonstrates requesting of OAuth credentials enabling execution of APIs. Implements Xamarin.Auth in Xamarin.Forms in a natural, PCL-like way.
-Uses JSON data file to provide a selection of OAuth logins. Providers include Amazon, Facebook, Google, and many more. 
+Synopsis: Complete C# cross-platform mobile app. Demonstrates how to request OAuth credentials for enabling the execution of APIs. Implements Xamarin.Auth in Xamarin.Forms in a natural, PCL-compatible way. Uses a JSON data file to provide a selection of OAuth logins. Choose from a list of OAuth providers including Amazon, Facebook, Google, and more. 
 
 Features
 1. Easy and powerful implementation of Xamarin.Auth in Xamarin.Forms.
-2. Complete C# cross-platform mobile app.
-3. Use Xamarin.Auth as if it was a native PCL library. No need to push logic into platform dependant files.
+2. Complete C# cross-platform mobile app [not yet, Android only now].
+3. Use Xamarin.Auth as if it was a native PCL library. No need to push logic into platform dependent files.
 4. Demonstrates usage of most Xamarin.Auth members.
 5. Compatible with (most) OAuth1 and OAuth2 providers.
 6. Uses an easily configurable embedded JSON file to drive execution. File contains OAuth providers, credentials, URLs and much more.
 7. Working examples of calling many different OAuth providers.
-8. Contains necessary logic to support quirky OAuth implementations.
-9. Easily adaptable Xamarin.Auth implementation ready for inclusion in your projects.
+8. Contains logic necessary to handle quirky OAuth implementations.
+9. Easily integratable Xamarin.Auth implementation ready for inclusion in your projects.
 10. Sub-classes Xamarin.Auth in PCL for easy use.
 11. Designed to be compatible with existing and future versions of Xamarin.Auth.
 12. Easy way to test OAuth implementations. Simply enter a new OAuth provider implementation in the JSON file.
 13. Demonstrates use of saving/reusing/deleting credentials to minimize repeated authentications.
-14. Demonstrates use of refreshing expired authorizations.
+14. Demonstrates use of refreshing expired authorizations [not yet].
 15. Demonstrates use of binding to Xamarin.Forms controls.
 16. Easier to use than WebView and non-PCL solutions.
 17. Complete source code provided. No restrictions on use.
@@ -28,8 +27,7 @@ Dependencies.
 4. Visual Studio 2015
 
 Summary of Current Status and Project Intent
-This project is intended as a sample of using Xamarin.Auth in Xamarin.Forms. My hopes are that people contribute new providers, enhancements and fixes.
-As of this writing, only Android is coded. iPhone and WinPhone are not. The following providers are not fully working; GitHub, LinkedIn, PayPal, StackOverflow.
+This project is intended as a sample of using Xamarin.Auth in Xamarin.Forms. My hopes are that people contribute new providers, enhancements and fixes. As of this writing only Android is supported. iOS and WinPhone are coded but not debugged. The following providers are not fully working; GitHub, LinkedIn, PayPal, StackOverflow.
 
 FAQ
 1. How do I add a new provider?
@@ -55,18 +53,20 @@ FAQ
   
 Project Structure
 1. OAuthForms1.sln is the solution file containing the following projects.
-2. OAuthForms1.csproj is the sample mobile app. It uses Xamarin.Forms (PCL) and Xamarin.Auth subclassing (PCL). This project contains a default OAuth icon (EmbeddedResoruce). Also contains the all important  JSON data file (EmbeddedResource).
+2. OAuthForms1.csproj is the sample mobile app. It uses Xamarin.Forms (PCL) and Xamarin.Auth sub-classing. This project contains a default OAuth icon (EmbeddedResoruce). Also contains the all important JSON data file (EmbeddedResource).
 3. UAuth.csproj is a PCL project containing Xamarin.XAuth sub-classing definitions. Composed of one source file.
 4. OAuthForms1.(Droid|iOS|WinPhone) are the platform specific projects. Each project is as minimal as possible, containing just one link to the subclassed Xamarin.Auth implementation.
-5. src folder contains Xamarin.Forms subclassing. These files are platform independent. They should not be copied into projects, use "Add as Link" instead.
+5. src folder contains Xamarin.Forms sub-classing. These files are platform independent. They should not be copied into projects, use "Add as Link" instead.
 6. Xamarin.Auth - Optional. Either install source from GitHub or include from Nuget.
 
 How to Create your Own Project
-1. Add Xamarin.Auth to your own project. Use Nuget (reference/component) or download source from GitHub as was done in OAuthForms1.sln sample.
-2. For each Xamarin.Auth referencing project (PCL and all platform projects) add a reference to UAuth. Either add a reference to the dll, or add UAuth.csproj to your solution.
-3. Add *a link* (best to not add a copy) of src/uauthimpl.cs to each platform specific project. The source code within uauthimpl.cs will correctly compile as it contains cross-platform code.
+1. Add Xamarin.Auth to your own project; use Nuget reference or download source from GitHub as was done in OAuthForms1.sln sample.
+2. For each project needing Xamarin.Auth, add a reference to UAuth. Either add a reference to the dll, or add UAuth.csproj to your solution.
+3. Add *a link* (best not to add a copy) of src/uauthimpl.cs to each platform specific project. The source code within uauthimpl.cs will correctly compile as it contains cross-platform code.
 
 If you'd like to contribute to the 
 1. Add/test new providers.
-2. Implement missing subclassing in oauthdefs.cs and oauthimpl.cs.
+2. Implement missing subclassing members in oauthdefs.cs and oauthimpl.cs.
 3. Debug failing providers (GitHub, LinkedIn, PayPal, StackOverflow).
+4. Implement iOS compatibility in src/oauthimpl.c.
+
